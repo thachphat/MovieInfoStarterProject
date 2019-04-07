@@ -89,16 +89,7 @@ extension MovieSearchViewController: UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = movies[indexPath.row]
         
-        cell.titleLabel.text = movie.title
-        cell.releaseDateLabel.text = dateFormatter.string(from: movie.releaseDate)
-        cell.overviewLabel.text = movie.overview
-        cell.posterImageView.kf.setImage(with: movie.posterURL)
-        
-        let rating = Int(movie.voteAverage)
-        let ratingText = (0..<rating).reduce("") { (acc, _) -> String in
-            return acc + "⭐️"
-        }
-        cell.ratingLabel.text = ratingText
+        cell.configure(viewModel: MovieViewViewModel(movie: movie))
         
         return cell
     }
