@@ -17,6 +17,7 @@ public class MovieStore: MovieService {
     private let urlSession = URLSession.shared
     
     private let jsonDecoder: JSONDecoder = {
+        // WARNING: introduce JSONDecoder
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         let dateFormatter = DateFormatter()

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// WARNING: introduce Codable
 public struct MoviesResponse: Codable {
     public let page: Int
     public let totalResults: Int
