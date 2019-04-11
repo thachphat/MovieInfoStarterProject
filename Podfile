@@ -10,5 +10,9 @@ target 'MovieInfo' do
   pod 'Kingfisher'
   pod 'RxSwift'
   pod 'RxCocoa'
+  
+  target 'MovieInfoTests' do
+    pod 'KIF'
+  end
 
 end

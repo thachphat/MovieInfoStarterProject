@@ -19,6 +19,9 @@ final class MovieListViewModel {
     var movies: Driver<[Movie]> {
         return _movies.asDriver()
     }
+    var movieViewModels: Observable<[MovieViewViewModel]> {
+        return _movies.map { $0.map { MovieViewViewModel(movie: $0) }}
+    }
     var numberOfMovies: Int {
         return _movies.value.count
     }

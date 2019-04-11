@@ -28,9 +28,17 @@ class MovieListViewController: UIViewController {
             }.asDriver(onErrorJustReturn: .nowPlaying)
         movieListViewModel = MovieListViewModel(endpoint: endpoint, movieService: MovieStore.shared)
         
-        movieListViewModel?.movies.drive(onNext: { [unowned self] (_) in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        movieListViewModel?.movies.drive(onNext: { [unowned self] (_) in
+//            self.tableView.reloadData()
+//        }).disposed(by: disposeBag)
+        
+        movieListViewModel?.movieViewModels.asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: "MovieCell", cellType: MovieCell.self)) { (row, element, cell) in
+                cell.configure(viewModel: element)
+            }
+            .disposed(by: disposeBag)
         
         movieListViewModel?.error.drive(onNext: { [unowned self] (error) in
             self.infoLabel.isHidden = error == nil
@@ -57,19 +65,19 @@ class MovieListViewController: UIViewController {
     }
 }
 
-extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieListViewModel?.numberOfMovies ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
-        if let viewModel = movieListViewModel?.viewModelForMovie(at: indexPath.row) {
-            cell.configure(viewModel: viewModel)
-        }
-        
-        return cell
-    }
-}
+//extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return movieListViewModel?.numberOfMovies ?? 0
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+//
+//        if let viewModel = movieListViewModel?.viewModelForMovie(at: indexPath.row) {
+//            cell.configure(viewModel: viewModel)
+//        }
+//
+//        return cell
+//    }
+//}

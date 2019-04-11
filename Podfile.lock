@@ -1,25 +1,31 @@
 PODS:
+  - KIF (3.7.5):
+    - KIF/Core (= 3.7.5)
+  - KIF/Core (3.7.5)
   - Kingfisher (5.3.1)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.5.0)
 
 DEPENDENCIES:
+  - KIF
   - Kingfisher
   - RxCocoa
   - RxSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - KIF
     - Kingfisher
     - RxCocoa
     - RxSwift
 
 SPEC CHECKSUMS:
+  KIF: 4794542528316338ebc6764ee76b767ac0ba2aed
   Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
 
-PODFILE CHECKSUM: 237d6d3f7e7c54606ae419358c64cf2b483fad7a
+PODFILE CHECKSUM: cc5c71a0d20c55e26f3f5eb19ae76fa93c58b611
 
 COCOAPODS: 1.6.1
