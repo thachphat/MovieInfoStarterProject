@@ -17,7 +17,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    func configure(viewModel: MovieViewViewModel) {
+    func configure(viewModel: CellViewModelProtocol) {
         titleLabel.text = viewModel.title
         overviewLabel.text = viewModel.overview
         releaseDateLabel.text = viewModel.releaseDate

@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct MovieViewViewModel {
+protocol CellViewModelProtocol {
+    var title: String { get }
+    var overview: String { get }
+    var posterURL: URL { get }
+    var releaseDate: String { get }
+    var rating: String { get }
+}
+
+struct MovieViewViewModel: CellViewModelProtocol {
     let movie: Movie
     
     private static let dateFormatter: DateFormatter = {
@@ -40,4 +48,16 @@ struct MovieViewViewModel {
             return acc + "⭐️"
         }
     }
+}
+
+struct TestCellViewModel: CellViewModelProtocol {
+    var title: String = "title"
+    
+    var overview: String = "overview"
+    
+    var posterURL: URL = URL(string: "https://www.google.com/search?q=random+image&tbm=isch&source=iu&ictx=1&fir=0VlsWP7C5cWnBM%253A%252CeLpSyvMoM8brnM%252C_&vet=1&usg=AI4_-kSO0Mtatvj4KpEBvph4QSvwkvfYEg&sa=X&ved=2ahUKEwie2OzGl8rhAhUJdXAKHZ2vBC4Q9QEwAXoECAYQBg#imgrc=0VlsWP7C5cWnBM:")!
+    
+    var releaseDate: String = "release date"
+    
+    var rating: String = "rating"
 }
